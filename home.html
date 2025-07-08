@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaFaixa RP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #a0a0a0;
+            overflow-x: hidden;
+        }
+        .hero-bg {
+            background-color: #3b3b3b;
+            background-image: linear-gradient(rgba(59,59,59,0.85), rgba(203,81,38,0.75)), url('https://i.postimg.cc/8cYsZ6z8/logo-na-faixa.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(203,81,38,0.2) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .section-padding {
+            @apply py-20 md:py-28 px-4 sm:px-6 lg:px-8;
+        }
+        .section-title {
+            @apply text-4xl md:text-5xl font-black text-center mb-5 uppercase tracking-wider;
+            color: #cb5126;
+            display: inline-block;
+        }
+
+        header {
+            background-color: rgba(10,10,10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid #cb5126;
+        }
+        .logo-img {
+            height: 142px;
+            filter: drop-shadow(0 0 10px rgba(203, 81, 38, 0.8));
+        }
+        .custom-img-style {
+            filter: grayscale(10%) contrast(110%) brightness(90%);
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(203,81,38,0.6), rgba(203,81,38,0.6), transparent);
+            margin: 3.5rem auto;
+            width: 70%;
+            opacity: 0.8;
+        }
+        #regras .rules-container {
+            background-color: #3b3b3b;
+        }
+        .text-shadow-heavy {
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.9), 0 0 12px rgba(203,81,38,0.35);
+        }
+        .text-shadow-subtle {
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+        .nav-link, .mobile-nav-link {
+            @apply text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out;
+        }
+        .nav-link:hover, .mobile-nav-link:hover {
+            color: #cb5126;
+        }
+        .cta-button {
+            @apply inline-block font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out;
+            background-color: #cb5126;
+            color: #ffffff;
+            -shadow: 0 4px 1box5px rgba(203,81,38,0.5);
+        }
+        .cta-button:hover {
+            background-color: #e06030;
+            transform: translateY(-2px);
+        }
+        /* Cor da parte laranja do texto principal */
+        .text-orange-500 {
+            color: #cb5126;
+        }
+        .text-orange-400 {
+            color: #e06030;
+        }
+        #regras .rules-container {
+            background-color: #3b3b3b;
+        }
+        #servidor {
+            background-color: #1a1a1a;
+        }
+
+        .button-87 {
+            margin: 10px;
+            padding: 15px 30px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            border-radius: 10px;
+            display: block;
+            border: 0px;
+            font-weight: 700;
+            box-shadow: 0px 0px 14px -7px #f09819;
+            background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%);
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .button-87:hover {
+            background-position: right center;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .button-87:active {
+            transform: scale(0.95);
+        }
+
+        /* Responsividade para o botão*/
+        @media (max-width: 640px) {
+            .button-87 {
+                font-size: 1.1rem; /* Ajuste para celular */
+                padding: 1.2rem 2.5rem; /* Ajuste para celular */
+            }
+        }
+        .social-icons a {
+            color: #cb5126; /* Cor dos ícones */
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .social-icons a:hover {
+            color: #e06030; /* Cor ao passar o mouse */
+            transform: translateY(-3px);
+        }
+        /* ESTILOS PARA REMOVER O FOCO/DESTAQUE DA IMAGEM DA LOGO */
+        #servidor .card a:focus,
+        #servidor .card a:focus-visible {
+            outline: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+        #servidor .card a:focus img,
+        #servidor .card a:focus-visible img {
+            outline: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <header class="shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center h-20 px-4 sm:px-6 lg:px-8">
+                <div class="flex-shrink-0">
+                    <a href="#home">
+                        <img src="https://i.postimg.cc/8cYsZ6z8/logo-na-faixa.png" alt="Logo NaFaixa RP" class="logo-img">
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-1 lg:space-x-2">
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#servidor" class="nav-link">Cidade</a>
+                    <a href="#footer-section" class="nav-link">Redes Sociais</a>
+                </nav>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-400">
+                        <span class="sr-only">Abrir menu principal</span>
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 border-t-2 border-orange-500/80">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-nav-link">Início</a>
+                <a href="#servidor" class="mobile-nav-link">A Cidade</a>
+                <a href="#comunidade" class="mobile-nav-link">Junte-se</a>
+                <a href="#footer-section" class="mobile-nav-link">Redes Sociais</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero-bg text-white min-h-screen flex items-center justify-center relative section-padding">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="container mx-auto text-center relative z-10">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight uppercase text-shadow-heavy">
+                <strong>NAFAIXA</strong> <span class="text-orange-500">RP</span>
+            </h1>
+            <h2>Bem-vindo ao NaFaixa RP
+O NaFaixa RP é um servidor de roleplay criado para quem busca viver histórias intensas, únicas e realistas dentro do universo GTA. Aqui, cada jogador é parte essencial da cidade: são cidadãos, policiais, criminosos, empreendedores e personagens que moldam o futuro de NaFaixa todos os dias. Com uma equipe dedicada e uma comunidade acolhedora, garantimos uma experiência imersiva, justa e divertida para todos.
+Entre, crie seu personagem e faça história NaFaixa!
+
+</h2>
+            <p class="mt-6">
+                <button id="copyIpButton" class="button-87" role="button" data-ip="connect 172.84.94.47:30120">
+                    Clique aqui para copiar o endereço da cidade
+                </button>
+            </p>
+
+           <div class="flex justify-center mb-12">
+                <a href="https://discord.gg/sd2pQkWBpn" target="_blank" class="button-87 inline-flex items-center text-xl px-12 py-6">
+                    <i class="fab fa-discord fa-fw mr-3"></i> ENTRE NO DISCORD
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="servidor" class="section-padding bg-gray-950">
+        <div class="container mx-auto">
+            <div class="section-title-container">
+            <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-10 max-w-2xl mx-auto">
+                <div class="card transform hover:scale-[1.02] transition-transform duration-300">
+                    <a href="#">
+                        <img src="https://i.postimg.cc/8cYsZ6z8/logo-na-faixa.png" alt="Cidade NaFaixa RP" class="rounded-lg w-full h-80 md:h-96 object-cover mb-8 custom-img-style" style="filter: drop-shadow(0px 0px 20px black);" onerror="this.src='https://i.postimg.cc/8cYsZ6z8/logo-na-faixa.png?text=Imagem+Indisponível'; this.classList.remove('custom-img-style');">
+                    </a>
+                    <div class="text-orange-500 mb-6 text-center">
+                        <i class="fas fa-city fa-4x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Script para o menu mobile
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Script para fechar o menu mobile ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        document.getElementById('copyIpButton').addEventListener('click', function() {
+            const ipToCopy = this.getAttribute('data-ip');
+
+            navigator.clipboard.writeText(ipToCopy).then(() => {
+                const originalText = 'Clique aqui para copiar o endereço da cidade';
+                this.innerHTML = '<i class="fas fa-check"></i> ENDEREÇO COPIADO!';
+                this.classList.add('copied');
+
+
+                setTimeout(() => {
+                    this.innerHTML = originalText.toUpperCase();
+                    this.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Falha ao copiar o endereço:', err);
+                alert('Falha ao copiar o endereço. Por favor, copie manualmente: ' + ipToCopy);
+            });
+        });
+    </script>
+
+    <footer id="footer-section" class="bg-black text-gray-500 py-16 border-t-2 border-orange-600/70">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-10 lg:gap-16 mb-10 text-center md:text-left">
+                <div class="md:col-span-1">
+                    <a href="#home" class="inline-block mb-6 mx-auto md:mx-0">
+                        <img src="https://i.postimg.cc/8cYsZ6z8/logo-na-faixa.png" alt="Logo NaFaixa RP" class="logo-img h-16"> </a>
+                    <p class="text-sm leading-relaxed">NaFaixa RP: Onde o asfalto é lei e a reputação é tudo. Entre por sua conta e risco. A cidade não dorme. E nem seus perigos.</p>
+                </div>
+                <div class="md:col-span-1">
+                    <h3 class="text-xl font-bold text-orange-500 mb-6 uppercase tracking-wider">Staff</h3>
+                    <p class="text-sm mb-4">Problemas sérios? A Staff pode ouvir.
+                    <p class="text-xs mt-4 text-gray-600">Para tratar assuntos... críticos e comuns o Discord é onde deve ser utilizado iniciando Tickets.</p>
+                </div>
+                <div class="md:col-span-1">
+                    <h3 class="text-xl font-bold text-orange-500 mb-6 uppercase tracking-wider">Redes Sociais</h3>
+                    <div class="social-icons flex justify-center md:justify-start space-x-6 text-3xl">
+                        <a href="https://www.instagram.com/nafaixagg" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@nafaixagg" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@NaFaixaGG" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-12 border-t border-gray-700/40 text-center text-xs">
+                <p>© <span id="currentYear"></span> NaFaixa RP.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuButton.querySelector('i');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            } else {
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
+            }
+        });
+
+        // Script para fechar menu mobile ao clicar em um link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            });
+        });
+
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.length > 1) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
